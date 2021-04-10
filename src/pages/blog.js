@@ -6,22 +6,22 @@ import MoreStories from "../components/more-stories";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { graphql } from "gatsby";
 
-export default function Index({ data: { hpCopy, hp_image, allPosts, site, blog } }) {
+export default function Index({ data: { allPosts, site, blog } }) {
   const heroPost = allPosts.nodes[0];
   const morePosts = allPosts.nodes.slice(1);
 
   return (
     <Container>
-      <HelmetDatoCms seo={hp_copy.seo} favicon={site.favicon} />
+      <HelmetDatoCms seo={blog.seo} favicon={site.favicon} />
       <Intro />
       {heroPost && (
         <HeroPost
-          title={hp_copy.title}
-          coverImage={hp_image}
-          //date={heroPost.date}
-          //author={heroPost.author}
-          //slug={heroPost.slug}
-          //excerpt={heroPost.excerpt}
+          title={heroPost.title}
+          coverImage={heroPost.coverImage}
+          date={heroPost.date}
+          author={heroPost.author}
+          slug={heroPost.slug}
+          excerpt={heroPost.excerpt}
         />
       )}
       {morePosts.length > 0 && <MoreStories posts={morePosts} />}
